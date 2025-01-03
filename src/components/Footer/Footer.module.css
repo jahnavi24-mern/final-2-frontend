@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
+
+
+.footer {
+    background-color: #171923;
+    color: #fff;
+    padding: 40px 0 20px;
+    margin-top: auto;
+}
+
+.logo {
+    display: flex;
+    gap: 1rem;
+}
+
+.footerContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.footerSection h3 {
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-family: 'Outfit', sans-serif;
+}
+
+.footerSection ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footerSection ul li {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    text-decoration: underline;
+}
+
+.footerSection ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footerSection ul li a:hover {
+    color: #ddd;
+}
+
+
+@media (max-width: 768px) {
+    .footerContent {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .footerSection {
+        text-align: center;
+    }
+}

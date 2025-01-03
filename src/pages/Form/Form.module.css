@@ -1,0 +1,55 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--background-primary);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.rightSection {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.shareButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.saveButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background: var(--save-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.crossButton {
+    color: var(--danger-color);
+}
+
+.middleSection {
+    display: flex;
+    gap: 1rem;
+}
+
+.formButton {
+    color: var(--text-primary);
+    background-color: transparent;
+    border: none;
+}

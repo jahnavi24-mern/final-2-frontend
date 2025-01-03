@@ -1,0 +1,181 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--background-primary);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.rightSection {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.shareButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.userDropdown {
+    position: relative;
+    border: 1px solid #FFFFFF29;
+    border-radius: 0.6rem;
+}
+
+.userButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.6rem;
+    background: var(--background-secondary);
+    cursor: pointer;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+}
+
+.userButton:hover {
+    background: var(--background-hover);
+}
+
+.userAvatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.dropdownMenu {
+    position: absolute;
+    top: 90%;
+    left: 0;
+    width: 250px;
+    background: var(--background-secondary);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: left;
+    z-index: 100;
+}
+
+.dropdownHeader {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.emptyState {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.dropdownFooter {
+    padding: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.dropdownFooter button {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    background: var(--danger-color);
+    color: white;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.createButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--background-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+}
+
+
+.folderSection {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 2rem;
+}
+
+.folderCard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--background-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+}
+
+.formSection {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 2rem;
+    height: 30vh;
+}
+
+.deleteButton {
+    padding: 0;
+    border: none;
+    color: var(--danger-color);
+    background-color: transparent;
+}
+.deleteIcon {
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.dropdownButton {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1rem;
+    padding: 0.5rem;
+}
+
+.createFormButton {
+    background-color: #1A5FFF;
+    color: var(--text-primary);
+    height: 100%;
+    border: none;
+    padding: 0 4rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transition: background-color 0.2s ease;
+}
+
+.createFormButton:disabled {
+    background-color: #615f5f;
+    color: #a9a9a9;
+    cursor: not-allowed;
+}

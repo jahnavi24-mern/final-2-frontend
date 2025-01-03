@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Open sans', sans-serif;
+    background-color: var(--background-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+:root[data-theme="light"] {
+    --background-primary: #ffffff;
+    --background-secondary: #f8f9fa;
+    --background-hover: #e9ecef;
+    --text-primary: #1a1a1a;
+    --text-secondary: #6c757d;
+    --primary-color: #4B83FF;
+    --border-color: #dee2e6;
+    --danger-color: #dc3545;
+    --danger-color-hover: #c82333;
+    --save-color: #4ADE80CC;
+}
+
+:root[data-theme="dark"] {
+    --background-primary: #1a1a1a;
+    --background-secondary: #2d2d2d;
+    --background-hover: #3d3d3d;
+    --text-primary: #ffffff;
+    --text-secondary: #ced4da;
+    --primary-color: #4B83FF;
+    --border-color: #404040;
+    --danger-color: #dc3545;
+    --danger-color-hover: #c82333;
+    --save-color: #4ADE80CC;
+}

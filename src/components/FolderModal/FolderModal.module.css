@@ -1,0 +1,76 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: var(--background-primary);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal h2 {
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.modalInput {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 1rem 0;
+    border: 1px solid var(--border-color);
+    border-radius: 0.25rem;
+    background: var(--background-secondary);
+    color: var(--text-primary);
+}
+
+.modalButtons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.cancelButton, .saveButton {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.cancelButton {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.cancelButton:hover {
+    background: var(--background-secondary);
+}
+
+.saveButton {
+    background: var(--primary-color);
+    border: none;
+    color: white;
+}
+
+.saveButton:hover {
+    opacity: 0.9;
+}
+
+.saveButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
