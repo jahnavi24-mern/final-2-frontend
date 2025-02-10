@@ -5,6 +5,7 @@ import FolderModal from '../../components/FolderModal/FolderModal';
 import { workspaceApi } from '../../api/workspace';
 import { getUserDetails } from '../../api/auth';
 import { createFolder, deleteFolder } from '../../api/folder';
+import { getFormById, getForms } from '../../api/form';
 import DeleteModal from '../../components/DeleteModal/DeleteModal';
 import { useNavigate } from 'react-router-dom';
 import Theme from '../../components/Theme/Theme';
@@ -13,6 +14,7 @@ const Dashboard = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [folders, setFolders] = useState([]);
+    const [forms, setForms] = useState([]);
     const [selectedFolder, setSelectedFolder] = useState(null);
     const [workspace, setWorkspace] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -20,20 +22,35 @@ const Dashboard = () => {
     const [folderToDelete, setFolderToDelete] = useState(null);
     const navigate = useNavigate();
 
-    const fetchWorkspaceDetails = async () => {
+    const fetchWorkspaceAndFolders = async () => {
         try {
             setLoading(true);
             const userData = await getUserDetails();
-            
             const workspaceData = await workspaceApi.getWorkspaceDetails(
                 userData.user.workspaces[0]
             );
 
+            const initialFolders = workspaceData.workspace.folders || [];
+
+            const updatedFolders = await Promise.all(
+                initialFolders.map(async (folder) => {
+                    const formsWithDetails = await Promise.all(
+                        folder.forms.map(async (form) => {
+                            const formDetails = await getFormById(form._id);
+                            return {
+                                _id: form._id,
+                                name: formDetails.data?.form?.title || 'Untitled Form',
+                            };
+                        })
+                    );
+                    return { ...folder, forms: formsWithDetails };
+                })
+            );
+
             setWorkspace(workspaceData.workspace);
-            setFolders(workspaceData.workspace.folders || []);
-            
+            setFolders(updatedFolders);
         } catch (error) {
-            console.error('Error fetching workspace:', error);
+            console.error('Error fetching workspace and folders:', error);
         } finally {
             setLoading(false);
         }
@@ -41,14 +58,20 @@ const Dashboard = () => {
 
 
     useEffect(() => {
-        fetchWorkspaceDetails();
+        fetchWorkspaceAndFolders();
     }, []);
+
+    // useEffect(() => {
+    //     if (folders.length > 0) {
+    //         fetchFormsForFolders();
+    //     }
+    // }, [folders]);
 
 
     const handleCreateFolder = async (folderName) => {
         try {
             const response = await createFolder(workspace._id, folderName);
-            
+
             const newFolder = {
                 _id: response._id,
                 name: response.folderName,
@@ -74,15 +97,15 @@ const Dashboard = () => {
 
         try {
             await deleteFolder(workspace._id, folderToDelete._id);
-            
-            setFolders(prevFolders => 
+
+            setFolders(prevFolders =>
                 prevFolders.filter(folder => folder._id !== folderToDelete._id)
             );
-            
+
             if (selectedFolder?._id === folderToDelete._id) {
                 setSelectedFolder(null);
             }
-            
+
             setShowDeleteModal(false);
             setFolderToDelete(null);
         } catch (error) {
@@ -91,7 +114,7 @@ const Dashboard = () => {
     };
 
     const createFormClick = () => {
-        navigate('/form')
+        navigate(`/form/${selectedFolder._id}`)
     }
 
     return (
@@ -158,13 +181,13 @@ const Dashboard = () => {
                             <div className={styles.dropdownSection}>
                                 <button
                                     className={styles.dropdownButton}
-                                    onClick={() => {/* Handle settings */}}
+                                    onClick={() => {/* Handle settings */ }}
                                 >
                                     <FiSettings /> Settings
                                 </button>
                                 <button
                                     className={`${styles.dropdownButton} ${styles.logoutButton}`}
-                                    onClick={() => {/* Handle logout */}}
+                                    onClick={() => {/* Handle logout */ }}
                                 >
                                     <FiLogOut /> Logout
                                 </button>
@@ -199,7 +222,7 @@ const Dashboard = () => {
                             onClick={() => setSelectedFolder(folder)}
                         >
                             <span>{folder.name}</span>
-                            <button 
+                            <button
                                 className={styles.deleteButton}
                                 onClick={(e) => handleDeleteClick(e, folder)}
                             >
@@ -227,9 +250,18 @@ const Dashboard = () => {
                                 </p>
                             ) : (
                                 selectedFolder.forms.map(form => (
-                                    <div key={form.id} className={styles.formCard}>
-                                        {form.name}
+                                    <div className={styles.formContainer}>
+                                        <div key={form.id} className={styles.formCard}>
+                                            {form.name}
+                                        </div>
+                                        <button
+                                            className={styles.deleteFormButton}
+                                            onClick={(e) => handleDeleteForm(e, form)}
+                                        >
+                                            <FiTrash2 className={styles.deleteIcon} />
+                                        </button>
                                     </div>
+
                                 ))
                             )}
                         </div>
@@ -243,7 +275,7 @@ const Dashboard = () => {
                 onSave={handleCreateFolder}
             />
 
-            <DeleteModal 
+            <DeleteModal
                 isOpen={showDeleteModal}
                 onClose={() => {
                     setShowDeleteModal(false);

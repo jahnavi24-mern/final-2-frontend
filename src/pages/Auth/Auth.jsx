@@ -33,7 +33,7 @@ const Auth = () => {
                 }
                 
                 const response = await signup({email, password, confirmPassword, userName})
-                navigate('/auth');
+                handleToggleForm();
             }
 
         }catch (error){

@@ -53,3 +53,90 @@
     background-color: transparent;
     border: none;
 }
+
+.inputForm {
+    background-color: var(--background-secondary);
+    border: none;
+    padding: 0.5rem 1rem;
+    color: var(--text-primary);
+}
+
+.content {
+    display: flex;
+    padding: 1rem;
+}
+
+.leftContent {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-primary);
+    padding: 2rem 1rem;
+}
+
+.bubbles {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+
+}
+
+.inputs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.bubbleItem, .inputItem  {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    background-color: var(--background-hover);
+    border: 1px solid var(--background-secondary);
+    border-radius: 0.5rem;
+    padding: 0 1rem;
+    width: 8rem;
+}
+
+.bubbleItem:hover, .inputItem:hover {
+    background-color: var(--background-hover);
+}
+
+.bubbleItem .icon {
+    color: #4B83FF;
+}
+
+.inputItem .icon {
+    color: #FFA54C;
+}
+
+.component {
+    background-color: var(--background-primary);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.component .input {
+    background-color: var(--background-secondary);
+}
+
+.rightContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    padding: 0 5rem;
+    gap: 1rem;
+}
+
+.componentContainer {
+    width: 30%;
+}
+
+.componentStart {
+    padding: 1rem;
+    background-color: var(--background-primary);
+    width: 30%;
+    border-radius: 0.5rem;
+}

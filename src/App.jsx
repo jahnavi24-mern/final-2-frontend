@@ -15,7 +15,7 @@ function App () {
                 <Route path="/" element={<Home />}/>
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/form" element={<Form />} />
+                <Route path="/form/:folderId" element={<Form />} />
             </Routes>
         </Router>
     )

@@ -179,3 +179,41 @@
     color: #a9a9a9;
     cursor: not-allowed;
 }
+
+.formList {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 100%;
+    gap: 2rem;
+}
+
+.formCard {
+    background-color: #a9a9a9;
+    border-radius: 0.5rem;
+    padding: 0 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.formContainer {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 100%;
+    gap: 2rem;
+}
+
+.deleteFormButton {
+    position: absolute;
+    right: -3%;
+    top: -5%;
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    color: var(--danger-color);
+}

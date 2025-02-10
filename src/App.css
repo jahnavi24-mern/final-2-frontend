@@ -3,7 +3,7 @@
 body {
     margin: 0;
     font-family: 'Open sans', sans-serif;
-    background-color: var(--background-primary);
+    background-color: var(--background-secondary);
     color: var(--text-primary);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
