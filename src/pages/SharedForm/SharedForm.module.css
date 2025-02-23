@@ -1,0 +1,149 @@
+.sharedForm {
+    max-width: 800px;
+    height: 100vw;
+    overflow-y: auto;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    color: black;
+}
+
+.chatBubbleLeft {
+    background: #f1f1f1;
+    padding: 10px;
+    border-radius: 15px;
+    width: fit-content;
+    max-width: 80%;
+    text-align: left;
+}
+
+.chatBubbleRight {
+    color: white;
+    padding: 0.6rem 1rem;
+    border-radius: 15px;
+    width: fit-content;
+    max-width: 80%;
+    text-align: right;
+    align-self: flex-end;
+    box-shadow: 1rem 1rem 1rem 1rem #eeeded;
+}
+
+.flow input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.nextButton {
+    background: #1A5FFF;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submitButton {
+    background: #28a745;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: var(--background-primary);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.modal h2 {
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.modalInput {
+    padding: 0.75rem;
+    margin: 1rem 0;
+    border: 1px solid var(--border-color);
+    border-radius: 0.25rem;
+    background: var(--background-secondary);
+    color: var(--text-primary);
+}
+
+.modalButtons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.cancelButton, .saveButton {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.cancelButton {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.cancelButton:hover {
+    background: var(--background-secondary);
+}
+
+.saveButton {
+    background: var(--primary-color);
+    border: none;
+    color: white;
+}
+
+.saveButton:hover {
+    opacity: 0.9;
+}
+
+.saveButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.sharedFormInput {
+    border: none;
+}
+
+.inputContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

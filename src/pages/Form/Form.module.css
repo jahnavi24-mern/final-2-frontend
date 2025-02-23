@@ -115,6 +115,7 @@
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .component .input {
@@ -139,4 +140,54 @@
     background-color: var(--background-primary);
     width: 30%;
     border-radius: 0.5rem;
+}
+
+.componentInput {
+    background-color: var(--background-secondary);
+    color: var(--text-primary);
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+}
+
+.para {
+    font-size: 0.8rem;
+    color: var(--background-hover);
+}
+
+.delete {
+    position: absolute;
+    right: -8%;
+    top: -8%;
+    color: var(--danger-color);
+    background-color: var(--background-hover);
+    padding: 0.6rem;
+    border-radius: 50%;
+}
+
+.card {
+    background-color: var(--background-primary);
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.8rem;
+}
+
+.response {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.responseContent {
+    display: flex;
+    gap: 2rem;
+}
+
+.active {
+    border: 1px #4B83FF solid;
+    border-radius: 0.6rem;
+    color: #4B83FF;
+    padding: 1rem 0.6rem;
 }

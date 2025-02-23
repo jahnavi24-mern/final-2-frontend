@@ -5,7 +5,7 @@ import FolderModal from '../../components/FolderModal/FolderModal';
 import { workspaceApi } from '../../api/workspace';
 import { getUserDetails } from '../../api/auth';
 import { createFolder, deleteFolder } from '../../api/folder';
-import { getFormById, getForms } from '../../api/form';
+import { getFormById, deleteForm } from '../../api/form';
 import DeleteModal from '../../components/DeleteModal/DeleteModal';
 import { useNavigate } from 'react-router-dom';
 import Theme from '../../components/Theme/Theme';
@@ -14,12 +14,13 @@ const Dashboard = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [folders, setFolders] = useState([]);
-    const [forms, setForms] = useState([]);
     const [selectedFolder, setSelectedFolder] = useState(null);
     const [workspace, setWorkspace] = useState(null);
     const [loading, setLoading] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [folderToDelete, setFolderToDelete] = useState(null);
+    const [formDelete, setFormToDelete] = useState(null);
+    const [formDeleteModal, setFormDeleteModal] = useState(false);
     const navigate = useNavigate();
 
     const fetchWorkspaceAndFolders = async () => {
@@ -61,13 +62,6 @@ const Dashboard = () => {
         fetchWorkspaceAndFolders();
     }, []);
 
-    // useEffect(() => {
-    //     if (folders.length > 0) {
-    //         fetchFormsForFolders();
-    //     }
-    // }, [folders]);
-
-
     const handleCreateFolder = async (folderName) => {
         try {
             const response = await createFolder(workspace._id, folderName);
@@ -86,11 +80,34 @@ const Dashboard = () => {
         }
     };
 
+    const handleFormClick = async (form) => {
+        navigate(`/form/?formId=${form._id}`)
+    }
+
     const handleDeleteClick = (e, folder) => {
         e.stopPropagation();
         setFolderToDelete(folder);
         setShowDeleteModal(true);
     };
+
+    const handleDeleteForm = async() => {        
+        if (!formDelete || !formDelete._id) return;
+        try{
+            await deleteForm(formDelete._id);
+
+            setFolders(prevFolders => 
+                prevFolders.map(folder => ({
+                    ...folder,
+                    forms: folder.forms.filter(form => form._id !== formDelete._id)
+                }))
+            )
+            setFormDeleteModal(false);
+            setFormToDelete(null);
+        } catch(error){
+            console.error('Error deleting form:', error);
+        }
+        
+    }
 
     const handleDeleteConfirm = async () => {
         if (!folderToDelete || !folderToDelete._id) return;
@@ -251,12 +268,18 @@ const Dashboard = () => {
                             ) : (
                                 selectedFolder.forms.map(form => (
                                     <div className={styles.formContainer}>
-                                        <div key={form.id} className={styles.formCard}>
+                                        <div key={form.id} className={styles.formCard}
+                                        onClick={() => handleFormClick(form)}
+                                        >
                                             {form.name}
                                         </div>
                                         <button
                                             className={styles.deleteFormButton}
-                                            onClick={(e) => handleDeleteForm(e, form)}
+                                            onClick={(e) => {
+                                                setFormToDelete(form);
+                                                setFormDeleteModal(true)
+                                            }
+                                            }
                                         >
                                             <FiTrash2 className={styles.deleteIcon} />
                                         </button>
@@ -284,6 +307,16 @@ const Dashboard = () => {
                 onConfirm={handleDeleteConfirm}
                 itemName={folderToDelete?.name}
             />
+
+            {formDelete && <DeleteModal
+            isOpen={formDeleteModal}
+            onClose={()=>{
+                setFormDeleteModal(false);
+                setFormToDelete(null);
+            }}
+            onConfirm={handleDeleteForm}
+            itemName='form'
+            />}
         </div>
     );
 };

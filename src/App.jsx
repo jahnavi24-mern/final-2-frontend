@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Auth from './pages/Auth/Auth';
 import Dashboard from './pages/Dashboard/Dashboard'
 import Form from './pages/Form/Form'
+import SharedForm from './pages/SharedForm/SharedForm';
 
 
 function App () {
@@ -15,7 +16,9 @@ function App () {
                 <Route path="/" element={<Home />}/>
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/form" element={<Form />} />
                 <Route path="/form/:folderId" element={<Form />} />
+                <Route path="/shared-form/:formId" element={<SharedForm />} />
             </Routes>
         </Router>
     )
